@@ -1,0 +1,13 @@
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.togglecontrol {
+    margin-bottom: 0px!important
+}
+
+.togglecontrol > div {
+    margin-bottom: 0px!important
+}

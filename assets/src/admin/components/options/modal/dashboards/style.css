@@ -1,0 +1,60 @@
+.textcontrol > div > input {
+    padding: 6px 8px;
+    box-shadow: 0 0 0 transparent;
+    transition: box-shadow .1s linear;
+    border-radius: 4px;
+    border: 1px solid #8d96a0;
+}
+
+.textcontrol > div > input:focus {
+    border: 2px solid #00a0d2!important;
+    box-shadow: none;
+}
+
+.textareacontrol > div > textarea {
+    padding: 6px 8px;
+    box-shadow: 0 0 0 transparent;
+    transition: box-shadow .1s linear;
+    border-radius: 4px;
+    border: 1px solid #8d96a0;
+}
+
+.textareacontrol > div > textarea:focus {
+    border: 2px solid #00a0d2;
+    outline-offset: -2px!important;
+}
+
+.togglecontrol > div {
+    margin-bottom: 0px!important;
+}
+
+.togglecontrol {
+    margin-bottom: 0px!important;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: 1fr;
+    grid-gap: 16px;
+    width: 540px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.typetoggle > div {
+    margin-bottom: 4px!important;
+}
+
+.typetoggle {
+    margin-bottom: 4px!important;
+}
+
+.typeheader {
+    margin-top: 0px!important;
+    margin-bottom: 4px!important;
+}

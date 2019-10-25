@@ -1,0 +1,55 @@
+.nav {
+    grid-column: 1 / 3;
+    grid-row: 2;
+}
+
+.paper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.menu {
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+}
+
+.search {
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+}
+
+.searchbar {
+    margin-right: 0px!important;
+}
+
+.searchbar > div {
+    margin-bottom: 0px!important;
+}
+
+.searchbar > div > input {
+    height: 28px!important;
+    padding: 4px 6px!important;
+    border-color: #ccc!important;
+    border-radius: 3px 0 0 3px!important;
+    box-shadow: inset 0 -1px 0 #ccc!important;
+}
+
+.searchbutton {
+    border-radius: 0 3px 3px 0!important;
+}
+
+.button {
+    margin-right: 8px!important;
+}
+
+.iconbutton {
+    margin-right: 4px!important;
+    padding: 4px!important;
+    height: auto!important;
+    color: #777!important;
+    border-radius: 3px!important;
+}

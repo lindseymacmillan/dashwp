@@ -1,0 +1,99 @@
+.editor {
+    margin: -16px;
+    height: 65vh;
+    width: 80vw;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 4fr 5fr 3fr;
+    grid-template-rows: calc(65vh - 46px) 46px;
+}
+
+.stage {
+    grid-column: 2;
+    grid-row: span 2;
+    background: rgb(192, 200, 209);   
+    display: flex;
+    align-items: flex-start;
+    justify-content: center; 
+    position: relative;
+    overflow-y: scroll;
+    padding: 10% 0;
+    position: relative;
+}
+
+.canvas {
+    width: 80%;
+    min-height: 80%;
+    border-radius: 0px;
+    display: grid;
+    grid-template-rows: 56px auto 56px;
+}
+
+.inspector {
+    grid-column: 3;
+    grid-row: 1;
+    background: rgb(255, 255, 255);
+}
+
+.actions {
+    grid-row: 2;
+    grid-column: 3;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 16px;
+}
+
+.cardheader {
+    height: 56px;
+    overflow: hidden;
+    padding: 0 16px;
+    width: calc(100% - 32px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e2e4e7;
+}
+
+.cardcontent {
+    padding: 10px;
+    width: calc(100% - 32px);
+}
+
+.cardactions {
+    grid-row: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    width: calc(100% - 32px);
+}
+
+.togglecontrol > div {
+    margin-bottom: 0px!important;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+
+.bin {
+    grid-column: 1;
+    grid-row: span 2;
+    background: #f1f1f1;
+    display: inline-grid;
+    grid-template-rows: min-content auto;
+    grid-template-columns: 1fr;
+}
+
+.fieldheader {
+    font-size: 16px;
+    border-bottom: 1px solid #e2e4e7;
+    background: #fff;
+    padding: 16px;
+}
+
+.fieldlist {
+    padding: 16px 16px 0 16px;
+    overflow-y: scroll;
+    position: relative;
+}

@@ -1,0 +1,28 @@
+.card {
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+}
+
+.media {
+    width: 100%;
+}
+
+.header {
+    font-size: 18px;
+    margin: 12px;
+    width: calc(100% - 24px);
+}
+
+.content {
+    padding: 12px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 12px;
+    width: calc(100% - 24px);
+}

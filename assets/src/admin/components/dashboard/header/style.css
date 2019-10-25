@@ -1,0 +1,6 @@
+.header {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+}
