@@ -8,42 +8,6 @@
     grid-template-rows: calc(65vh - 46px) 46px;
 }
 
-.stage {
-    grid-column: 2;
-    grid-row: span 2;
-    background: rgb(192, 200, 209);   
-    display: flex;
-    align-items: flex-start;
-    justify-content: center; 
-    position: relative;
-    overflow-y: scroll;
-    padding: 10% 0;
-    position: relative;
-}
-
-.canvas {
-    width: 80%;
-    min-height: 80%;
-    border-radius: 0px;
-    display: grid;
-    grid-template-rows: 56px auto 56px;
-}
-
-.inspector {
-    grid-column: 3;
-    grid-row: 1;
-    background: rgb(255, 255, 255);
-}
-
-.actions {
-    grid-row: 2;
-    grid-column: 3;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0 16px;
-}
-
 .cardheader {
     height: 56px;
     overflow: hidden;
@@ -73,16 +37,6 @@
     margin-bottom: 0px!important;
     opacity: 0.5;
     pointer-events: none;
-}
-
-
-.bin {
-    grid-column: 1;
-    grid-row: span 2;
-    background: #f1f1f1;
-    display: inline-grid;
-    grid-template-rows: min-content auto;
-    grid-template-columns: 1fr;
 }
 
 .fieldheader {

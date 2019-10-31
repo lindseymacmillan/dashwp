@@ -1,0 +1,8 @@
+.field {
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.field > div {
+    pointer-events: none;
+}

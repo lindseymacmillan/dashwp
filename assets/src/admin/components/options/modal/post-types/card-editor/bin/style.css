@@ -1,0 +1,21 @@
+.bin {
+    grid-column: 1;
+    grid-row: span 2;
+    background: #f1f1f1;
+    display: inline-grid;
+    grid-template-rows: min-content auto;
+    grid-template-columns: 1fr;
+}   
+
+.header {
+    padding: 16px;
+    font-size: 16px;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+}
+
+.list {
+    padding: 16px;
+    overflow-y: scroll;
+    position: relative;
+}

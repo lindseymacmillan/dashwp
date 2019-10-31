@@ -1,6 +1,9 @@
 import qs from 'qs';
 import axios from 'axios';
 
+import { setQueryString, runQuery } from '../query'
+import { closeModal } from '../interface'
+
 //ACTIONS
 
 export const createContent = (args) => {
@@ -28,8 +31,93 @@ export const createContent = (args) => {
             if (args.goTo == true) {
                 window.location.href = window.location.origin + '/wp-admin/post.php?post=' + response.data + '&action=edit';
             } else {
-                //dispatch(setQueryString(''));
-                //dispatch(runQuery({type: 'any', dashboard_id: args.id, queryString: ''}));
+                dispatch(setQueryString(''));
+                dispatch(runQuery({
+                    queryType: args.queryType, 
+                    queryTerm: dwp_data.name, 
+                    queryString: ''}));
+                dispatch(closeModal());
+            }
+            console.log(response);
+        })
+        .then(function (error) {
+            if (error) {
+                console.log(error);
+            }
+        });
+    } 
+}
+
+export const updateContent = (args) => {
+
+    console.log('content args!', args);
+
+    let route = 'dashwp/v1/content';
+
+    return function(dispatch) {
+
+        console.log(args);
+
+        return axios.post(wpApiSettings.root + route,
+            qs.stringify({
+                'action': 'update',
+                'payload': {
+                    'fields': args.fields,
+                    'id': args.id,
+                }
+            }),
+            {headers: {'X-WP-Nonce': wpApiSettings.nonce} }
+        )
+        .then(function (response) {
+            if (args.goTo == true) {
+                window.location.href = window.location.origin + '/wp-admin/post.php?post=' + response.data + '&action=edit';
+            } else {
+                dispatch(setQueryString(''));
+                dispatch(runQuery({
+                    queryType: args.queryType, 
+                    queryString: '', 
+                    queryTerm: dwp_data.name}));
+                dispatch(closeModal());
+            }
+            console.log(response);
+        })
+        .then(function (error) {
+            if (error) {
+                console.log(error);
+            }
+        });
+    } 
+}
+
+export const deleteContent = (args) => {
+
+    console.log('content args!', args);
+
+    let route = 'dashwp/v1/content';
+
+    return function(dispatch) {
+
+        console.log(args);
+
+        return axios.post(wpApiSettings.root + route,
+            qs.stringify({
+                'action': 'delete',
+                'payload': {
+                    'id': args.id,
+                }
+            }),
+            {headers: {'X-WP-Nonce': wpApiSettings.nonce} }
+        )
+        .then(function (response) {
+            if (args.goTo == true) {
+                window.location.href = window.location.origin + '/wp-admin/post.php?post=' + response.data + '&action=edit';
+            } else {
+                dispatch(setQueryString(''));
+                dispatch(runQuery({
+                    queryType: args.queryType, 
+                    queryString: '', 
+                    queryTerm: dwp_data.name}));
+                dispatch(closeModal());
             }
             console.log(response);
         })
@@ -49,7 +137,7 @@ export const fetchingContentFieldValues = () => {
     }
 }
 
-export const contentFieldValuesReceivedFromServer = (fields) => {
+export const contentFieldValuesReceivedFromSever = (fields) => {
     return {
         type: 'CONTENT_FIELD_VALUES_RECEIVED',
         payload: fields
@@ -81,7 +169,7 @@ export const getContentFieldValues = (args) => {
 
     return function(dispatch) {
 
-        dispatch(fetchingContentFields())
+        dispatch(fetchingContentFieldValues())
 
         return axios.post(wpApiSettings.root + route,
             qs.stringify({
@@ -94,7 +182,45 @@ export const getContentFieldValues = (args) => {
             {headers: {'X-WP-Nonce': wpApiSettings.nonce} }
         )
         .then(function (response) {
-            dispatch(contentFieldsReceivedFromSever(response.data.return));
+            dispatch(contentFieldValuesReceivedFromSever(response.data.return));
+            console.log(response);
+        })
+        .then(function (error) {
+            if (error) {
+                console.log(error);
+            }
+        });
+    } 
+}
+
+export const contentOptionsReceived = (options) => {
+    return {
+        type: 'CONTENT_OPTIONS_RECEIVED',
+        payload: options
+    }
+}
+
+export const runContentQuery = () => {
+
+    let route = 'dashwp/v1/dashboards';
+
+    return function(dispatch) {
+
+        return axios.post(wpApiSettings.root + route,
+            qs.stringify({
+                'action': 'content_query',
+                'payload': {
+                    'key': 'value',
+                }
+            }),
+            {headers: {'X-WP-Nonce': wpApiSettings.nonce} }
+        )
+        .then(function (response) {
+            // if (args.goTo == true) {
+            //     window.location.href = window.location.origin + '/wp-admin/post.php?post=' + response.data + '&action=edit';
+            // } else {
+            dispatch(contentOptionsReceived(response.data.return));
+            // }
             console.log(response);
         })
         .then(function (error) {

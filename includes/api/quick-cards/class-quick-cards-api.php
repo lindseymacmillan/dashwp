@@ -26,14 +26,12 @@ class Quick_Cards_API extends API {
     // API Actions 
     // denoted by 'action_' prefix followed by type
 
-    public function action_query($data) {
-        $fields = [
-            [
-                'type' => 'text',
-                'label' => 'Title',
-                'value' => 'did it work?'
-            ]
-        ];
+    public function action_query_values($data) {
+        $fields = $data['fields'];
+
+        foreach ($fields as $key => $field) {
+            $fields[$key]['value'] = 'test';
+        }
 
         return $fields;
     }

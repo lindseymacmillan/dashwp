@@ -94,25 +94,23 @@ class Post_Types_API extends API {
     }
 
     public function action_update($data) {
-        $labels = [];
+
+        $args = get_post_meta($data['id'], 'dwp_post_args', true);
 
         if (!empty($data['plural_name'])) {
-            $labels['name'] = $data['plural_name'];
-            $labels['view_items'] = 'View ' . $data['plural_name'];
+            $args['labels']['name'] = $data['plural_name'];
+            $args['labels']['view_items'] = 'View ' . $data['plural_name'];
         }
 
         if (!empty($data['name'])) {
-            $labels['singular_name'] = $data['name'];
-            $labels['edit_item'] = 'Edit ' . $data['name'];
-            $labels['new_item'] = 'New ' . $data['name'];
+            $args['labels']['singular_name'] = $data['name'];
+            $args['labels']['edit_item'] = 'Edit ' . $data['name'];
+            $args['labels']['new_item'] = 'New ' . $data['name'];
         }
 
-        $args = [
-            'labels' => $labels,
-            'public' => true,
-            'show_in_rest' => true,
-            'show_ui' => true,
-        ];
+        $args['public'] = true;
+        $args['show_in_rest'] = true;
+        $args['show_ui'] = true;
 
         if (!empty($data['show_in_menu'])) {
             $args['show_in_menu'] = $data['show_in_menu'] === 'true' ? true : false;

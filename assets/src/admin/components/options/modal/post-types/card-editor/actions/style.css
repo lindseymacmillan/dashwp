@@ -1,0 +1,8 @@
+.actions {
+    grid-row: 2;
+    grid-column: 3;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 16px;
+}

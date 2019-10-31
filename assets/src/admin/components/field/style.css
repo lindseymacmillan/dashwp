@@ -22,6 +22,12 @@
     box-shadow: 0 0 0 2px #00a0d2!important;
 }
 
+.togglecontrol {
+    margin-bottom: 4px!important;
+    margin-top: 4px!important;
+}
+
 .togglecontrol > div {
-    margin-bottom: 0px!important;
+    margin-bottom: 4px!important;
+    margin-top: 4px!important;
 }

@@ -1,3 +1,4 @@
+import MediaUploader from './media-uploader'
 const { TextControl, TextareaControl, ToggleControl } = wp.components
 import styles from './style.css'
 
@@ -28,6 +29,16 @@ const Field = (props) => {
                 <ToggleControl
                     label={props.label}
                     className={styles.togglecontrol}
+                    checked={props.value}
+                    onChange={props.onChange}
+                />
+            )
+            break;
+        case 'media':
+            return (
+                <MediaUploader 
+                    mediaTypes={['image']}
+                    label={props.label}
                     value={props.value}
                     onChange={props.onChange}
                 />

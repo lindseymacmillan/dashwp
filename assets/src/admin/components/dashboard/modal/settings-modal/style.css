@@ -1,0 +1,26 @@
+.content {
+    min-width: 600px;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 30px;
+}
+
+.typeheader {
+    margin-top: 0px!important;
+    margin-bottom: 4px!important;
+}
+
+.typetoggle > div {
+    margin-bottom: 4px!important;
+}
+
+.typetoggle {
+    margin-bottom: 4px!important;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}

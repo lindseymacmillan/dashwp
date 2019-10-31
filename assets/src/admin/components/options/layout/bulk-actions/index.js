@@ -9,7 +9,9 @@ const General = () => {
                 <h2>Bulk Actions</h2>
             </Paper>
             <Paper className={styles.paper}>
-                <h1>Testing</h1>
+                <h1>What are bulk actions?</h1>
+                <h3>This page is under development.</h3>
+                <p>Bulk actions will be used to quickly convert post types, taxonomies, and authors to make your transition to DashWP as seamless as possible.</p>
             </Paper>
         </Fragment>
     )

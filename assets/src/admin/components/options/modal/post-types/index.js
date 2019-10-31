@@ -1,19 +1,23 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { useState } from 'react'
-import { closePostTypesModal, createPostType, updatePostType, deletePostType } from '../../../../screens/options/redux/actions/postTypesActions'
-const { Modal, Button, TextControl, TextareaControl, ToggleControl } = wp.components
+import { closePostTypesModal } from '../../../../screens/options/redux/actions/postTypesActions'
+const { Modal } = wp.components
 const { Fragment } = wp.element
-import CardEditor from '../../../card-editor'
-import Card from '../../../card'
+
+import NewModal from './new-modal'
+import EditModal from './edit-modal'
+import CardEditor from './card-editor'
+import DeleteModal from './delete-modal'
+import HelpModal from './help-modal'
+
 
 import styles from './style.css'
-import { style } from '@material-ui/system'
 
 const PostTypesModal = () => {
+
     const dispatch = useDispatch()
+
     const isOpen = useSelector(state => state.postTypes.modal.isOpen)
     const mode = useSelector(state => state.postTypes.modal.mode)
-    const postType = useSelector(state => state.postTypes.modal.postType)
 
     console.log(mode);
     let title;
@@ -22,98 +26,43 @@ const PostTypesModal = () => {
         case 'new':
             title = 'New Post Type'
             Content = () => {
-                const [name, setName] = useState('');
-                const [pluralName, setPluralName] = useState('');
-                const [showInMenu, setShowInMenu] = useState(false);
-
-                return(
-                    <Fragment>
-                        <TextControl 
-                            className={styles.textcontrol} 
-                            label='Name'
-                            value={name}
-                            onChange={(val) => setName(val)}
-                        />
-                        <TextControl 
-                            className={styles.textcontrol} 
-                            label='Plural Name'
-                            value={pluralName}
-                            onChange={(val) => setPluralName(val)}
-                        />
-                        <div className={styles.actions}>
-                            <ToggleControl 
-                                checked={showInMenu}
-                                label='Show in menu'
-                                className={styles.togglecontrol}
-                                onChange={() => setShowInMenu(!showInMenu)}
-                            />
-                            <Button isPrimary onClick={() => dispatch(createPostType({name: name, pluralName: pluralName, showInMenu: showInMenu}))}>Create</Button>
-                        </div>
-                    </Fragment>
+                return (
+                    <NewModal />
                 )
             }
             break;
-        case 'settings':
+        case 'edit':
             title = 'Post Type Settings'
             Content = () => {
-                const [name, setName] = useState(postType.object.labels.singular_name);
-                const [pluralName, setPluralName] = useState(postType.object.labels.name);
-                const [showInMenu, setShowInMenu] = useState(postType.object.show_in_menu);
-
-                return(
-                    <Fragment>
-                        <TextControl 
-                            className={styles.textcontrol} 
-                            label='Name'
-                            value={name}
-                            onChange={(val) => setName(val)}
-                        />
-                        <TextControl 
-                            className={styles.textcontrol} 
-                            label='Plural Name'
-                            value={pluralName}
-                            onChange={(val) => setPluralName(val)}
-                        />
-                        <div className={styles.actions}>
-                            <ToggleControl 
-                                checked={showInMenu}
-                                label='Show in menu'
-                                className={styles.togglecontrol}
-                                onChange={() => setShowInMenu(!showInMenu)}
-                            />
-                            <Button isPrimary onClick={() => dispatch(updatePostType({id: postType.id, name: name, pluralName: pluralName, showInMenu: showInMenu}))}>Update</Button>
-                        </div>
-                    </Fragment>
+                return (
+                    <EditModal />
                 )
             }
             break;
-        case 'quick_card':
+        case 'card_editor':
             title = 'Card Editor'
             Content = () => {
-                return(
+                return (
                     <CardEditor />
                 )
             }
             break;
-        case 'help':
-            title = 'Post Types Help'
+        case 'delete':
+            title = 'Delete'
             Content = () => {
-                return(
-                    <Fragment>
-                        <Button isDefault>Did this help?</Button>
-                    </Fragment>
+                return (
+                    <DeleteModal />
                 )
             }
             break;
-        case 'delete':
-            title = 'Delete Post Type'
+        case 'help':
+            title = 'Help'
             Content = () => {
-                return(
-                    <Fragment>
-                        <Button isPrimary onClick={() => dispatch(deletePostType({id: postType.id}))}>Delete</Button>
-                    </Fragment>
+                return (
+                    <HelpModal />
                 )
             }
+            break;
     }
     return (
         <Fragment>

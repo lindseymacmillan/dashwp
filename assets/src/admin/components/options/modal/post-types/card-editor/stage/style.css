@@ -1,0 +1,52 @@
+.stage {
+    grid-column: 2;
+    grid-row: span 2;
+    background: rgb(192, 200, 209);   
+    display: flex;
+    align-items: flex-start;
+    justify-content: center; 
+    position: relative;
+    overflow-y: scroll;
+    padding: 10% 0;
+    position: relative;
+}
+
+.canvas {
+    width: 80%;
+    min-height: 80%;
+    border-radius: 0px;
+    display: grid;
+    grid-template-rows: 56px auto 56px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-bottom: 1px solid #ccc;
+}
+
+.fields {
+    padding: 16px;
+}
+
+.field > div {
+    pointer-events: none;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+}
+
+.togglecontrol {
+    margin-bottom: 0px!important;
+}
+
+
+.togglecontrol > div {
+    margin-bottom: 0px!important;
+}

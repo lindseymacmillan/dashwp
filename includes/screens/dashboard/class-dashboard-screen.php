@@ -119,11 +119,12 @@ class Dashboard_Screen extends Screen {
 			if ($dashboard['name'] === $this->title) {
 				$data['name'] = $dashboard['name'];
 				$data['id'] = $dashboard['id'];
-				$data['descripton'] = $dashboard['description'];
+				$data['description'] = $dashboard['description'];
 				$data['linked_content'] = $dashboard['linked_content'];
 				$data['supported_types'] = $dashboard['supported_types'];
 				$data['supported_type_objects'] = $dashboard['supported_type_objects'];
 				$data['filters'] = $dashboard['filters'];
+				$data['views'] = $dashboard['views'];
 			}
 		}
 		
@@ -140,6 +141,8 @@ class Dashboard_Screen extends Screen {
 			''
 		);
 		wp_enqueue_style( 'dwp-styles' );
+
+		wp_enqueue_media();
 
 		wp_register_style(
 			'roboto-font',

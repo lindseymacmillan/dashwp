@@ -26,10 +26,10 @@ const General = () => {
                 actions={(
                     <Fragment>
                         <div>
-                            <Button isPrimary className={styles.cardbutton} onClick={() => dispatch(openPostTypesModal({mode: 'settings', postType: postType}))}>Settings</Button>
-                            <Button isDefault className={styles.cardbutton} onClick={() => dispatch(openPostTypesModal({mode: 'quick_card', postType: postType}))}>Card Editor</Button>
+                            <Button isPrimary className={styles.cardbutton} onClick={() => dispatch(openPostTypesModal({mode: 'edit', source: postType}))}>Settings</Button>
+                            <Button isDefault className={styles.cardbutton} onClick={() => dispatch(openPostTypesModal({mode: 'card_editor', source: postType}))}>Card Editor</Button>
                         </div>
-                        <Button isDefault disabled={!postType.custom} onClick={() => dispatch(openPostTypesModal({mode: 'delete', postType: postType}))}>Delete</Button>
+                        <Button isDefault disabled={!postType.custom} onClick={() => dispatch(openPostTypesModal({mode: 'delete', source: postType}))}>Delete</Button>
                     </Fragment>
                 )}
             />
@@ -45,7 +45,7 @@ const General = () => {
                 </div>
                 <div>
                     <Button isDefault className={styles.button} onClick={() => dispatch(openPostTypesModal({mode: 'help'}))}>Help</Button>
-                    <Button isPrimary className={styles.button} onClick={() => dispatch(openPostTypesModal({mode: 'new', postType: null}))}>New Post Type</Button>
+                    <Button isPrimary className={styles.button} onClick={() => dispatch(openPostTypesModal({mode: 'new' }))}>New Post Type</Button>
                 </div>
             </Paper>
             {cards}

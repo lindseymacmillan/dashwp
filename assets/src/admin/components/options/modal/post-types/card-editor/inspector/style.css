@@ -1,0 +1,12 @@
+.inspector {
+    grid-column: 3;
+    grid-row: 1;
+    background: rgb(255, 255, 255);
+    padding: 16px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

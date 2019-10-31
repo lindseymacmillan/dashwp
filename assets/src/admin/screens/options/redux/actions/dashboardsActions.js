@@ -8,7 +8,7 @@ export const openDashboardsModal = (args) => {
         type: 'OPEN_DASHBOARDS_MODAL',
         payload: {
             mode: args.mode,
-            dashboard: args.dashboard
+            source: args.source
         }
     }
 }
@@ -177,6 +177,42 @@ export const queryDashboards = () => {
         .then(function (response) {
             console.log(response);
             dispatch(dashboardsReceived(response.data.return));
+        })
+        .then(function (error) {
+            if (error) {
+                console.log(error);
+            }
+        });
+    } 
+}
+
+export const dashboardsContentReceived = (content) => {
+    return {
+        type: 'DASHBOARDS_CONTENT_RECEIVED',
+        payload: content
+    }
+}
+
+export const runContentQuery = () => {
+
+    return function(dispatch) {
+
+        return axios.post(wpApiSettings.root + route,
+            qs.stringify({
+                'action': 'content_query',
+                'payload': {
+                    'key': 'value',
+                }
+            }),
+            {headers: {'X-WP-Nonce': wpApiSettings.nonce} }
+        )
+        .then(function (response) {
+            // if (args.goTo == true) {
+            //     window.location.href = window.location.origin + '/wp-admin/post.php?post=' + response.data + '&action=edit';
+            // } else {
+            dispatch(dashboardsContentReceived(response.data.return));
+            // }
+            console.log(response);
         })
         .then(function (error) {
             if (error) {

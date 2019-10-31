@@ -23,7 +23,7 @@ export const setQueryString = (query) => {
     }
 }
 
-export const runQuery = (queryTerm, queryType, queryString) => {
+export const runQuery = (args) => {
 
     let route = 'dashwp/v1/content';
 
@@ -35,9 +35,9 @@ export const runQuery = (queryTerm, queryType, queryString) => {
             qs.stringify({
                 'action': 'query',
                 'payload': {
-                    'query_type': queryType,
-                    'query_term': queryTerm,
-                    'query_string': queryString
+                    'query_type': args.queryType,
+                    'query_term': args.queryTerm,
+                    'query_string': args.queryString
                 }
             }),
             {headers: {'X-WP-Nonce': wpApiSettings.nonce} }

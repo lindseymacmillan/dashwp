@@ -1,30 +1,33 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { closeModal, toggleGoTo } from '../../../screens/dashboard/redux/actions/interface'
-import { setContentFields, createContent } from '../../../screens/dashboard/redux/actions/content'
+import { setContentFields, deleteContent, runContentQuery } from '../../../screens/dashboard/redux/actions/content'
 import ContentFields from '../content-fields'
 import { StylesContext } from '@material-ui/styles/StylesProvider'
-const { Modal, Button, ToggleControl } = wp.components
+const { Modal, Button, ToggleControl, TextControl, TextareaControl } = wp.components
 const { Fragment } = wp.element
+
+import SettingsModal from './settings-modal'
 
 import styles from './style.css'
 
 const DashboardModal = () => {
+
     const dispatch = useDispatch()
     const isOpen = useSelector(state => state.interface.modal.isOpen)
-    const goTo = useSelector(state => state.interface.modal.goTo)
+    const mediaLibraryIsOpen = useSelector(state => state.interface.modal.mediaLibraryIsOpen)
     const mode = useSelector(state => state.interface.modal.mode)
     const source = useSelector(state => state.interface.modal.source)
+    const queryType = useSelector(state => state.query.type)
 
     let title
     let Content
     switch (mode) {
         case 'new':
             dispatch(setContentFields({postType: source.name}))
-            
+
             title = 'New'
             Content = () => {
-                console.log('test!')
                 return (
                     <div>
                         <ContentFields />
@@ -33,10 +36,14 @@ const DashboardModal = () => {
             }
             break;
         case 'edit':
+            dispatch(setContentFields({postType: source.post_type}))
+            //dispatch(getContentFieldValues({fields: contentFields, id: source.ID}))
             title = 'Edit'
             Content = () => {
                 return (
-                    <p>This is some content.</p>
+                    <div>
+                        <ContentFields />
+                    </div>
                 )
             }
             break;
@@ -44,7 +51,13 @@ const DashboardModal = () => {
             title = 'Delete'
             Content = () => {
                 return (
-                    <p>This is some content.</p>
+                    <Button 
+                        isPrimary
+                        onClick={() => dispatch(deleteContent({
+                            id: source.ID, 
+                            queryType: queryType
+                        }))}
+                        >Delete</Button>
                 )
             }
             break;
@@ -57,10 +70,11 @@ const DashboardModal = () => {
             }
             break;
         case 'settings':
-            title = 'Settings'
+            dispatch(runContentQuery())
+            title = 'Dashboard Settings'
             Content = () => {
                 return (
-                    <p>This is some content.</p>
+                    <SettingsModal />
                 )
             }
             break;
@@ -77,7 +91,10 @@ const DashboardModal = () => {
             {isOpen && (
                 <Modal 
                     title={ title }
-                    onRequestClose={ () => dispatch(closeModal()) }>
+                    onRequestClose={
+                        mediaLibraryIsOpen === false ?
+                        () => dispatch(closeModal()) : null
+                    }>
                     <Content />
                 </Modal>
             )}

@@ -8,7 +8,7 @@ export const openPostTypesModal = (args) => {
         type: 'OPEN_POST_TYPES_MODAL',
         payload: {
             mode: args.mode,
-            postType: args.postType
+            source: args.source,
         }
     }
 }
@@ -19,30 +19,37 @@ export const closePostTypesModal = () => {
     }
 }
 
-export const addPostTypeCardField = (args) => {
+export const addContentField = (args) => {
     return {
-        type: 'ADD_POST_TYPE_CARD_FIELD',
+        type: 'ADD_CONTENT_FIELD',
         payload: args
     }
 }
 
-export const setPostTypeCardActiveField = (field) => {
+export const setActiveField = (args) => {
     return {
-        type: 'SET_POST_TYPE_CARD_ACTIVE_FIELD',
-        payload: field
-    }
-}
-
-export const movePostTypeCardField = (args) => {
-    return {
-        type: 'MOVE_POST_TYPE_CARD_FIELD',
+        type: 'SET_ACTIVE_FIELD',
         payload: args
     }
 }
 
-export const deletePostTypeCardField = (args) => {
+export const moveContentField = (args) => {
     return {
-        type: 'DELETE_POST_TYPE_CARD_FIELD',
+        type: 'MOVE_CONTENT_FIELD',
+        payload: args
+    }
+}
+
+export const removeContentField = (args) => {
+    return {
+        type: 'REMOVE_CONTENT_FIELD',
+        payload: args
+    }
+}
+
+export const updateContentField = (args) => {
+    return {
+        type: 'UPDATE_CONTENT_FIELD',
         payload: args
     }
 }
@@ -53,10 +60,10 @@ export const fetchingPostTypes = () => {
     }
 }
 
-export const postTypesReceived = (post_types) => {
+export const postTypesReceived = (args) => {
     return {
         type: 'POST_TYPES_RECEIVED',
-        payload: post_types
+        payload: args
     }
 }
 
@@ -154,7 +161,7 @@ export const updatePostType = (args) => {
                     'name': args.name,
                     'plural_name': args.pluralName,
                     'show_in_menu': args.showInMenu,
-                    'card_fields': args.cardFields
+                    'card_fields': args.contentFields
                 }
             }),
             {headers: {'X-WP-Nonce': wpApiSettings.nonce} }
@@ -208,43 +215,7 @@ export const getPostTypeFields = (postType) => {
     }
 }
 
-export const addPostTypeField = () => {
-    return {
-        type: 'ADD_POST_TYPE_FIELD'
-    }
-}
-
-export const removePostTypeField = (fieldIndex) => {
-    return {
-        type: 'REMOVE_POST_TYPE_FIELD',
-        payload: {
-            field_index: fieldIndex
-        }
-    }
-}
-
-export const movePostTypeField = (fromIndex, toIndex) => {
-    return {
-        type: 'MOVE_POST_TYPE_FIELD',
-        payload: {
-            from_index: fromIndex,
-            to_index: toIndex
-        }
-    }
-}
-
-export const setPostTypeField = (args) => {
-    return {
-        type: 'SET_POST_TYPE_FIELD',
-        payload: {
-            field_index: args.field_index,
-            key: args.key,
-            value: args.value,
-        }
-    }
-}
-
-export const updatePostTypeFields = (postType, postFields) => {
+export const updateContentFields = (args) => {
 
     return function(dispatch) {
 
@@ -254,8 +225,8 @@ export const updatePostTypeFields = (postType, postFields) => {
             qs.stringify({
                 'action': 'update_fields',
                 'payload': {
-                    'post_type': postType,
-                    'post_fields': postFields
+                    'post_type': args.postType,
+                    'post_fields': args.contentFields
                 }
             }),
             {headers: {'X-WP-Nonce': wpApiSettings.nonce} }

@@ -1,0 +1,15 @@
+.mediauploader {
+    padding: 6px;
+    border-radius: 3px;
+    background: rgb(245, 245, 245);
+    overflow: hidden;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px!important;
+    margin-top: 4px!important;
+}
+
+.button {
+    padding: 0 14px 4px!important;
+}

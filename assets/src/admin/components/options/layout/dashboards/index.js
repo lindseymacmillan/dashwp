@@ -25,8 +25,8 @@ const General = () => {
             excerpt={dashboard.description}
             actions={(
                 <div>
-                    <Button isPrimary className={styles.cardbutton} onClick={() => dispatch(openDashboardsModal({mode: 'edit', dashboard: dashboard}))}>Settings</Button>
-                    <Button isDefault className={styles.cardbutton} onClick={() => dispatch(openDashboardsModal({mode: 'delete', dashboard: dashboard}))}>Delete</Button>
+                    <Button isPrimary className={styles.cardbutton} onClick={() => dispatch(openDashboardsModal({mode: 'edit', source: dashboard}))}>Settings</Button>
+                    <Button isDefault className={styles.cardbutton} onClick={() => dispatch(openDashboardsModal({mode: 'delete', source: dashboard}))}>Delete</Button>
                 </div>
             )}
             />

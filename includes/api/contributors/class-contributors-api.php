@@ -27,8 +27,12 @@ class Contributors_API extends API {
     // denoted by 'action_' prefix followed by type
 
     public function action_create($data) {
-        $dashboard = wp_insert_term($data['name'], 'dwp_contributor');
-        return $dashboard;
+        $contributor = wp_insert_term(
+            $data['name'], 
+            'dwp_contributor',
+            ['description' => $data['bio']
+        ]);
+        return $contributor;
     }
 
     public function action_query($data) {
@@ -37,6 +41,15 @@ class Contributors_API extends API {
             'hide_empty' => false,
         ]);
         return $dashboards;
+    }
+
+    public function action_update($data) {
+        $contributor = wp_update_term($data['id'], 'dwp_contributor', [
+            'name' => $data['name'],
+            'description' => $data['bio']
+        ]);
+
+        return $contributor;
     }
 
     public function action_delete($data) {

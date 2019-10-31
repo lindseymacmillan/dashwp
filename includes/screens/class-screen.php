@@ -165,7 +165,7 @@ abstract class Screen {
 	 * @return array An array of script dependencies.
 	 */
 	public function get_script_dependencies( $dependencies = [] ) {
-		$base_dependencies = [ 'wp-components', 'wp-api-fetch', 'wp-element', 'wp-compose', 'wp-api'];
+		$base_dependencies = [ 'wp-components', 'wp-api-fetch', 'wp-element', 'wp-api'];
 		return array_merge( $base_dependencies, $dependencies );
 	}
 

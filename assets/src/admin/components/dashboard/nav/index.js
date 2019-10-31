@@ -1,34 +1,27 @@
+import { useSelector, useDispatch } from 'react-redux'
+import { setQueryString } from '../../../screens/dashboard/redux/actions/query'
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Filters from '../filters'
+import Views from '../views'
 import styles from './style.css'
 
 const { Button, Icon, TextControl } = wp.components;
 
 const Nav = () => {
 
+    const dispatch = useDispatch()
+    const queryString = useSelector(state => state.query.string)
+
     return(
         <div className={styles.nav}>
             <Paper className={styles.paper}>
                 <div className={styles.menu}>
                     <Filters />
-                    <div>
-                        <Button isTertiary className={styles.iconbutton}>
-                            <Icon icon="grid-view" />
-                        </Button>
-                        <Button isTertiary className={styles.iconbutton}>
-                            <Icon icon="excerpt-view" />
-                        </Button>
-                        <Button isTertiary className={styles.iconbutton}>
-                            <Icon icon="calendar" />
-                        </Button>
-                        <Button isTertiary className={styles.iconbutton}>
-                            <Icon icon="feedback" />
-                        </Button>
-                    </div>
+                    <Views />
                 </div>
                 <div className={styles.search}>
-                    <TextControl className={styles.searchbar}/>
+                    <TextControl className={styles.searchbar} value={queryString} onChange={(val) => dispatch(setQueryString(val))} />
                     <Button isDefault className={styles.searchbutton}>Search</Button>
                 </div>
             </Paper>

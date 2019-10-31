@@ -98,7 +98,36 @@ class Dashboards_API extends API {
             }
             $dashboard['filters'] = $filters;
 
-            $linked_content = get_term_meta($term->term_id, 'dwp_linked_content', true);
+            $views = [
+                [
+                    'label' => 'Grid',
+                    'name' => 'grid',
+                    'icon' => 'grid-view'
+                ],
+                [
+                    'label' => 'List',
+                    'name' => 'list',
+                    'icon' => 'excerpt-view'
+                ]
+            ];
+            $dashboard['views'] = $views;
+
+            $linked_id = get_term_meta($term->term_id, 'dwp_linked_content', true);
+
+            switch ($linked_id) {
+                case 0:
+                    $linked_label = 'No content selected';
+                    break;
+                default:
+                    $linked_object = get_post($linked_id);
+                    $linked_type = get_post_type_object($linked_object->post_type);
+                    $linked_label = 'Edit ' . strtolower($linked_type->labels->singular_name);
+            }
+            
+            $linked_content = [
+                'id' => $linked_id,
+                'label' => $linked_label
+            ];
             $dashboard['linked_content'] = $linked_content;
 
             array_push($dashboards, $dashboard);
@@ -109,6 +138,33 @@ class Dashboards_API extends API {
     public function action_delete($data) {
         $deleted = wp_delete_term($data['id'], 'dwp_dashboard');
         return $deleted;
+    }
+
+    public function action_content_query($data) {
+
+        $post_types = get_post_types(['public' => true], 'names');
+        unset($post_types['attachment']);
+        unset($post_types['dwp_pt']);
+
+        $args = [
+            'numberposts' => -1,
+            'post_type'   => $post_types,
+            'post_status' => 'any',
+        ];
+
+        $posts = get_posts($args);
+        $content = array_map([__CLASS__, 'format_content_options'], $posts);
+
+        $options = array_merge([['label' => 'None', 'value' => 0]], $content);
+        return $options;
+    }
+
+    public function format_content_options($content) {
+        $option = [
+            'label' => $content->post_title,
+            'value' => $content->ID
+        ];
+        return $option;
     }
     
 }

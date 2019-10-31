@@ -105,6 +105,8 @@ class Options_Screen extends Screen {
 		);
 		wp_enqueue_style( 'dwp-styles' );
 
+		wp_enqueue_media();
+
 		wp_register_style(
 			'roboto-font',
 			'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap',

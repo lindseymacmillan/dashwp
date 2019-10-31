@@ -8,6 +8,9 @@ import styles from './style.css'
 const Panels = () => {
     const dispatch = useDispatch()
     const supportedTypeObjects = useSelector(state => state.interface.supportedTypeObjects)
+    const linkedContent = useSelector(state => state.interface.linkedContent)
+    const displayLink = linkedContent.id === '0' ? false : true
+
     const newContentButtons = supportedTypeObjects.map((type) => {
         return (
             <Button 
@@ -22,8 +25,10 @@ const Panels = () => {
             <Card className={styles.intro}>
                 <div>
                     <h3>Get started</h3>
-                    <p>This is a test!</p>
-                    <Button isPrimary isLarge>Edit show</Button>
+                    <p>Jump into things by creating new content!</p>
+                    {displayLink && (
+                        <a className='button button-primary' href={'/wp-admin/post.php?post=' + linkedContent.id + '&action=edit'}>{linkedContent.label}</a>
+                    )}
                 </div>
                 <div>
                     <h3 className={styles.newheader}>Create content</h3>
@@ -33,7 +38,10 @@ const Panels = () => {
                 </div>
             </Card>
             <Card className={styles.secondary}>
-                <h2>Testing</h2>
+                <h2>What are dashboards?</h2>
+                <p>Dashboards help you quickly create, edit and review content
+                    that belong to a group.
+                </p>
             </Card>
         </Fragment>
     )

@@ -19,8 +19,17 @@ const General = () => {
 
     const cards = contributors.map((contributor, index) =>
         <Card 
-            width={1}
+            width={2}
             title={contributor.name}
+            excerpt={(
+                <p>{contributor.description}</p>
+            )}
+            actions={(
+                <Fragment>
+                    <Button isPrimary onClick={() => dispatch(openContributorsModal({mode: 'edit', source: contributor}))}>Edit</Button>
+                    <Button isDefault onClick={() => dispatch(openContributorsModal({mode: 'delete', source: contributor}))}>Delete</Button>
+                </Fragment>
+            )}
         />
     )
 
