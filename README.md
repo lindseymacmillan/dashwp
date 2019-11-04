@@ -5,7 +5,7 @@ An easier, simpler way to manage content for WordPress.
 
 ## Big picture
 
-DashWP is a suite of tools to help you manage the content, and content architecture, of your Wordpress site. In addition to filling typical needs (e.g. custom post type/taxonomy creation, bulk post conversion actions, etc) DashWP enables the creation of *dashboards* to easily manage content that belongs in a group. 
+DashWP is a suite of tools to help you manage the content, and content architecture, of your WordPress site. In addition to filling typical needs (e.g. custom post type/taxonomy creation, bulk post conversion actions, etc) DashWP enables the creation of *dashboards* to easily manage content that belongs in a group. 
 
 ## What is a dashboard?
 
